@@ -18,12 +18,12 @@ def logging_test(logger):
     logging.addLevelName(level, 'LEVEL')
     assert logging.getLevelName(level) == 'LEVEL'
 
-    logger.debug(logging.DEBUG)
-    logger.info(logging.INFO)
-    logger.warning(logging.WARN)
-    logger.log(level=level, msg=level)
-    logger.error(logging.ERROR)
-    logger.critical(logging.CRITICAL)
+    logger.debug("A Debug Logging Message")
+    logger.info("A Info Logging Message")
+    logger.warning("A Warning Logging Message")
+    logger.log(level=level, msg="A Level Logging Message")
+    logger.error("An Error Logging Message")
+    logger.critical("A Critical Logging Message")
 
 
 def simple_config():
@@ -52,7 +52,9 @@ def my_config():
     """Write your own logging configuration."""
     # TODO write your own logging configuration
     #      specify a log file, threshold level, format, and append mode
-    pass
+    formatter = 'Date-Time: %(asctime)s| Name: %(name)s| Level: %(levelname)s| Message: %(message)s'
+    datefmt = "%y/%b/%Y %H:%M:%S"
+    logging.basicConfig(format=formatter, datefmt=datefmt, level=logging.DEBUG, filename="report_data.log")
 
 
 if __name__ == "__main__":
@@ -60,7 +62,7 @@ if __name__ == "__main__":
     # TODO Configure logging using one of these choices:
 
     # 1. Call basicConfig with the default settings
-    logging.basicConfig()
+    # logging.basicConfig()
 
     # 2. Call simple_config to set the format of log messages.
     #    Comment out the above call (#1) to basicConfig for this.
@@ -69,10 +71,10 @@ if __name__ == "__main__":
     # 3. my_config() write your own logging configuration as
     #    described in the assignment. 
     #    Comment out the above calls to simple_config and basicConfig.
-    # my_config() 
+    my_config()
 
     # Log some messages to the root logger using different logging levels.
-    logger = logging.getLogger()
+    logger = logging.getLogger(__name__)
     print("Logging to ", str(logger))
     logging_test(logger)
 
