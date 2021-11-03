@@ -54,7 +54,7 @@ def my_config():
     #      specify a log file, threshold level, format, and append mode
     formatter = 'Date-Time: %(asctime)s| Name: %(name)s| Level: %(levelname)s| Message: %(message)s'
     datefmt = "%y/%b/%Y %H:%M:%S"
-    logging.basicConfig(format=formatter, datefmt=datefmt, level=logging.DEBUG, filename="report_data.log")
+    logging.basicConfig(format=formatter, datefmt=datefmt, level=logging.DEBUG, filename="report_data.log",filemode='w')
 
 
 if __name__ == "__main__":
