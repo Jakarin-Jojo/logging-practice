@@ -50,16 +50,12 @@ def simple_config():
 
 def my_config():
     """Write your own logging configuration."""
-    # TODO write your own logging configuration
-    #      specify a log file, threshold level, format, and append mode
     formatter = 'Date-Time: %(asctime)s| Name: %(name)s| Level: %(levelname)s| Message: %(message)s'
     datefmt = "%y/%b/%Y %H:%M:%S"
-    logging.basicConfig(format=formatter, datefmt=datefmt, level=logging.DEBUG, filename="report_data.log",filemode='w')
+    logging.basicConfig(format=formatter, datefmt=datefmt, level=logging.DEBUG, filename="report_data.log", filemode='w')
 
 
 if __name__ == "__main__":
-    #
-    # TODO Configure logging using one of these choices:
 
     # 1. Call basicConfig with the default settings
     # logging.basicConfig()
@@ -78,5 +74,11 @@ if __name__ == "__main__":
     print("Logging to ", str(logger))
     logging_test(logger)
 
-    # TODO create a named logger, set a a custom log threshold,
-    #       and call logging_test again with your named logger.
+    logger = logging.getLogger()
+    logger.setLevel(logging.WARN)
+    logging_test(logger)
+
+    # logging for the 'foo' module
+    mylogger = logging.getLogger("foo")
+    mylogger.setLevel(logging.DEBUG)  # log everything
+    logging_test(mylogger)
